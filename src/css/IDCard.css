@@ -2,7 +2,9 @@
     perspective: 1000px;
     width: 338.39px;
     height: 550px;
-
+    position: absolute;
+    top: 5%;
+    left: 35%;
 }
 
 .card {
@@ -169,7 +171,7 @@
 .name {
     font-size: 1.5rem;
     font-weight: bold;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 
 .qr-bio {

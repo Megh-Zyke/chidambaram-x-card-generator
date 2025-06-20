@@ -1,15 +1,44 @@
 import { useState, useRef, useEffect } from "react";
 import "../css/IDCard.css";
+import QRCodeGenerator from "./QRCodeGenerator";
 import html2canvas from "html2canvas";
 import Draggable from "react-draggable";
 import Xlogo from "../assets/logo.svg";
-import QRCode from "../assets/qr.svg";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const IDCard = () => {
   const [flipped, setFlipped] = useState(false);
   const cardRef = useRef(null);
   const nodeRef = useRef(null);
   const [showShine, setShowShine] = useState(false);
+
+  const location = useLocation();
+  const navigate = useNavigate();
+  const data = location.state;
+
+  const [year, month] = data.joined.split("-");
+  const formattedDate = new Date(year, month - 1).toLocaleString("default", {
+    month: "long",
+    year: "numeric",
+  });
+
+  const rankLabel =
+    data.followers < 20
+      ? "NEWBIE"
+      : data.followers >= 100000
+      ? "ULTRABIE"
+      : data.followers >= 1000
+      ? "HIGHBIE"
+      : "LOWBIE";
+
+  if (!data) {
+    return (
+      <div>
+        <h2>No data found</h2>
+        <button onClick={() => navigate("/")}>Go Back</button>
+      </div>
+    );
+  }
 
   useEffect(() => {
     setShowShine(true);
@@ -80,34 +109,34 @@ const IDCard = () => {
             </div>
 
             <div className="user-information">
-              <div className="user-rank">HIGHBIE ⊛</div>
+              <div className="user-rank">{rankLabel} ⊛</div>
 
               <div className="user-details">
                 <div className="followers">
                   <div className="heading">FOLLOWERS</div>
-                  <div className="followers-count">14,700</div>
+                  <div className="followers-count">{data.followers}</div>
                 </div>
                 <div className="joining-date">
                   <div className="heading">JOINED</div>
-                  <div className="date">OCTOBER 2022</div>
+                  <div className="date">{formattedDate}</div>
                 </div>
               </div>
 
               <hr className="break-line" />
 
-              <div className="handle">@amritwt</div>
-              <div className="name">AMRIT</div>
+              <div className="handle">{`@${data.handle}`}</div>
+              <div className="name">{data.name}</div>
 
               <div className="qr-bio">
                 <div className="qr-container">
-                  <img src={QRCode} className="qr-img" alt="QR code" />
+                  <QRCodeGenerator value={data.handle} />
                 </div>
 
                 <div className="bio">
                   <div className="about">ABOUT</div>
-                  <div className="desc">21, engineer.</div>
+                  <div className="desc">{data.bio}</div>
                   <div className="website-label">WEBSITE</div>
-                  <div className="website">amritwt.me</div>
+                  <div className="website">{data.website}</div>
                 </div>
               </div>
             </div>
