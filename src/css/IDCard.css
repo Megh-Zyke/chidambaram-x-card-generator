@@ -1,7 +1,7 @@
 .card-container {
     perspective: 1000px;
     width: 338.39px;
-    height: 550px;
+    height: 540px;
     position: absolute;
     top: 5%;
     left: 35%;
@@ -16,15 +16,9 @@
     cursor: pointer;
     overflow: hidden;
     position: relative;
+    border-radius: 29px;
 
-    background: linear-gradient(145deg, #1a1a1a, #2b2b2b);
-    /* base metallic tone */
-    border-radius: 20px;
-    box-shadow:
-        inset 0 0 30px rgba(255, 255, 255, 0.02),
-        inset 0 0 10px rgba(255, 255, 255, 0.08),
-        0 5px 15px rgba(0, 0, 0, 0.3);
-    border: 3px solid rgb(239, 233, 233);
+    border: 5px solid rgb(239, 233, 233);
 
 }
 
@@ -80,37 +74,14 @@
     width: 100%;
     height: 100%;
     backface-visibility: hidden;
-    background: linear-gradient(145deg, #1a1a1a, #2a2a2a);
+    background: url('../assets/Rectangle.svg') center center/cover no-repeat;
     border-radius: 20px;
     color: white;
     font-family: monospace;
     padding: 120px 30px 30px;
     box-sizing: border-box;
-    box-shadow:
-        inset 0 0 10px rgba(255, 255, 255, 0.05),
-        /* subtle inner light */
-        0 5px 15px rgba(0, 0, 0, 0.3);
-    /* outer depth */
     border: 1px solid rgba(255, 255, 255, 0.1);
-    background-blend-mode: overlay;
-}
 
-
-.card::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(130deg,
-            rgba(255, 255, 255, 0.08) 0%,
-            rgba(255, 255, 255, 0.02) 40%,
-            rgba(0, 0, 0, 0.2) 100%);
-    mix-blend-mode: screen;
-    opacity: 0.3;
-    pointer-events: none;
-    z-index: 2;
 }
 
 .card-back {
@@ -228,4 +199,28 @@ a {
 .btn {
     display: flex;
     justify-content: center;
+}
+
+@media (max-width: 768px) {
+    .card-container {
+        width: 90vw;
+        height: auto;
+        left: 5%;
+        top: 5%;
+        transform: none;
+        position: relative;
+    }
+
+    .card {
+        height: auto;
+        aspect-ratio: 2 / 3;
+        border-width: 3px;
+    }
+
+    .card-front,
+    .card-back {
+        padding: 90px 20px 20px;
+        font-size: 0.9rem;
+    }
+
 }

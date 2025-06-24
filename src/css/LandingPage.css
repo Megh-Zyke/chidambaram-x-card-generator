@@ -8,8 +8,6 @@
     --transition: all 0.3s ease;
 }
 
-
-
 body {
     margin: 0;
     font-family: "Segoe UI", sans-serif;
@@ -36,7 +34,6 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-
 }
 
 .landing-page-title {
@@ -115,4 +112,58 @@ body {
 
 .form button:hover {
     background-color: #00acc1;
+}
+
+@media (max-width: 768px) {
+    .landing-page {
+        flex-direction: column-reverse;
+        height: auto;
+    }
+
+    .left-section,
+    .right-section {
+        flex: none;
+        width: 100%;
+        padding: 2rem;
+    }
+
+    .left-section {
+        order: 2;
+        text-align: center;
+    }
+
+    .right-section {
+        order: 1;
+    }
+
+    .landing-page-title {
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .xlogo {
+        width: 40px;
+    }
+
+    .title {
+        font-size: 1.5rem;
+    }
+
+    .subtitle {
+        font-size: 0.9rem;
+        margin-bottom: 1.5rem;
+        max-width: none;
+    }
+
+    .form {
+        width: 100%;
+        max-width: none;
+    }
+
+    .form input,
+    .form textarea,
+    .form button {
+        font-size: 1rem;
+    }
 }

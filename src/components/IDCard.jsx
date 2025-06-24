@@ -45,37 +45,45 @@ const IDCard = () => {
   }, []);
 
   const handleDownload = async () => {
-    console.log("Button pressed");
     const card = nodeRef.current;
     if (!card) return;
 
-    if (flipped) {
-      setFlipped(false);
-    }
+    const wasFlipped = flipped;
+    const hadShine = showShine;
 
-    // Get front and back sides
-    const front = card.querySelector("#card-front");
+    setFlipped(false);
+    setShowShine(false);
+
+    await new Promise((res) => setTimeout(res, 100));
+
+    const cardWrapper = card.querySelector(".card");
     const back = card.querySelector("#card-back");
+    const front = card.querySelector("#card-front");
 
-    // Hide back and force-show front
+    // Hide back
     back.style.display = "none";
-    front.style.display = "block";
 
-    // Capture front side
-    const canvas = await html2canvas(front, {
+    // Wait for layout to apply
+    await new Promise((res) => setTimeout(res, 50));
+
+    // Capture the full card (which has the border)
+    const canvas = await html2canvas(cardWrapper, {
       backgroundColor: null,
       scale: 2,
+      useCORS: true,
     });
 
-    // Revert visibility
-    back.style.display = "";
-    front.style.display = "";
-
+    // Create and click download link
     const dataURL = canvas.toDataURL("image/png", 1.0);
     const link = document.createElement("a");
     link.href = dataURL;
     link.download = "id_card.png";
     link.click();
+
+    // Revert state
+    back.style.display = "";
+    setFlipped(wasFlipped);
+    setShowShine(hadShine);
   };
 
   const animationComplete = () => {
