@@ -66,7 +66,6 @@ const IDCard = () => {
     // Wait for layout to apply
     await new Promise((res) => setTimeout(res, 50));
 
-    // Capture the full card (which has the border)
     const canvas = await html2canvas(cardWrapper, {
       backgroundColor: null,
       scale: 2,
