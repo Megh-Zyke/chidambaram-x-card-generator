@@ -25,7 +25,7 @@ cd chidambaram-x-card-generator
 npm install
 ```
 
-````
+
 
 ## Usage
 
@@ -46,7 +46,11 @@ You can manually input the values for the user card (e.g., name, username, follo
 - Export cards as downloadable images
 - Add support for themes and layout customization
 
-##  Example
+##  UI
+![image](https://github.com/user-attachments/assets/618ad111-d434-45bf-874e-55c573ec09d4)
+![image](https://github.com/user-attachments/assets/1ca7cb9d-40bc-4de7-b2c4-2b875ffce88a)
+
+
 
 
 ##  Contributing
@@ -56,4 +60,4 @@ Pull requests are welcome. If you'd like to suggest improvements or enhancements
 ## 🪪 License
 
 This project is open-source and available under the [MIT License](LICENSE).
-````
+
